@@ -7,6 +7,11 @@ import Titulo from "./components/titulo/titulo";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ItemCount from "./components/ItemCount/ItemCount";
+import Categorias from "./components/Categorias/Categorias";
+
+import Catalogo from "./components/Catalogo/Catalogo";
+
 
 function App() {
   return (
@@ -14,6 +19,10 @@ function App() {
       <NavBar />
       <Titulo />
       <ItemListContainer greeting={'Bienvenidos a Green GrowShop!'}/>
+      <ItemCount />
+      <Categorias />
+      <Catalogo />
+    
     </div>
   );
 }
