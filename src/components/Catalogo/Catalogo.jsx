@@ -1,25 +1,29 @@
-import {useState, useEffect} from 'react'
-import { obtenerProductos } from '../../asyncmock'
-import { ItemList } from '../ItemList/ItemList'
+import { useEffect, useState } from "react"
+import { obtenerProductos, getCategorias } from "../../asyncmock"
+import ItemList from "../ItemList/ItemList"
+import { useParams, useSearchParams } from "react-router-dom"
+
+const Catalogo = ({greeting}) => {
+    const [productos, setProductos] = useState([]);
+
+    const {idCategoria} = useParams();
+
+     useEffect(() => {
+
+        const funcionProductos = idCategoria ? getCategorias : obtenerProductos;
+
+        funcionProductos(idCategoria)
+        .then(res => setProductos(res))
+        .catch(error => console.log(error))
+     }, [idCategoria])
 
 
-const Catalogo = () => {
-  const [productos, setProductos] = useState([]);
-
-    useEffect( () => {
-      obtenerProductos()
-          .then(response => setProductos(response))
-          .catch(error => console.error(error))
-    }, [])
-
-
-  return (
-    <div>
-      <h2>Productos</h2>
-      <ItemList productos= {productos}/>
-    </div>
-    
-  )
+    return(
+        <>
+            <h2 style={{ textAlign: "center"}}>{greeting}</h2>
+            <ItemList productos={productos}/>
+        </>
+    )
 }
 
 export default Catalogo
